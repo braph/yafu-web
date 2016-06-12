@@ -1,0 +1,105 @@
+body {
+    padding-top: 40px;
+    background-color: #252525;
+}
+
+.SourceCode {
+    background-color: #EDEDED;
+    border: 1px solid #333333;
+    margin: 5px;
+    padding: 5px;
+    overflow: auto;
+}
+
+.PasswordBox {
+    color: #999;
+    font-family: sans-serif;
+    font-size: 10pt;
+    width: 600px;
+    height: 320px;
+    margin: 15px auto 0;
+    text-align: center;
+    background-color: #212121;
+    border: 1px solid #282828;    
+}
+
+.PasswordBox img {
+    vertical-align: middle;
+}
+
+.PasswordBox .ErrorTitle {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #BF0000;
+    margin-top: 20px;
+}
+
+.PasswordBox .Info {
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.PasswordBox .TextField {
+    color: #999;
+    background-color: #313131;
+    border: 1px solid #222;
+}
+
+.PasswordBox .Button {
+    background-color: #999;
+    border: 1px solid #222;
+    font-weight: bold;
+}
+
+.PasswordBox .Notice {
+    color: #999999;
+    font-size: 7pt;
+}
+
+#Banner {
+    font-family: sans-serif;
+    background: url(/yafu/images/minimal-bg.png) repeat-x;
+    height: 40px;
+    min-width: 640px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid #609CE5;
+}
+
+#Banner #Logo {
+    border: none;
+    margin: 0;
+    float: left;
+}
+
+#Banner .BannerInfo {
+    float: right;
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-right: 15px;
+    height: 25px;
+    max-height: 25px;
+    overflow: auto;
+    vertical-align: middle;
+    font-size: 10pt;
+}
+
+#LanguageForm {
+    display: inline;
+}
+
+#LanguageForm img, #LanguageForm input {
+    border: none;
+    vertical-align: middle;
+}
+
+#LanguageForm select {
+    color: #999;
+    background-color: #313131;
+    border: 1px solid #222;
+    width:  175px;
+}

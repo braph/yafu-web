@@ -1,0 +1,11 @@
+RewriteEngine on
+RewriteRule ^admin$ /yafu/index.php?action=listfiles&admin=true
+RewriteRule ^([0-9]+)/(.*)$ /yafu/index.php?get=$1:$2
+RewriteRule ^info/([0-9]+)/(.*)$ /yafu/index.php?info=$1:$2
+RewriteRule ^show/([0-9]+)/(.*)$ /yafu/index.php?show=$1:$2
+RewriteRule ^delete/([0-9a-zA-Z]+)/?$ /yafu/index.php?delete=$1
+RewriteRule ^thumbnail/([0-9]+)/(.*)$ /yafu/index.php?thumbnail=$1:$2
+RewriteRule ^mail/([0-9]+)/(.*)$ /yafu/index.php?mail=$1:$2
+RewriteRule ^files.csv$ /yafu/index.php?error=403 [F]
+ErrorDocument 404 /yafu/index.php?error=404
+ErrorDocument 403 /yafu/index.php?error=403

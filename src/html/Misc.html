@@ -1,0 +1,223 @@
+<?php /*********************************************************************/
+    if($MISC == "ErrorFileExists") { 
+?>
+    <p>Eine Datei mit gleichem Inhalt wurde bereits hochgeladen:</p>
+    <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+    <span style="vertical-align: middle">
+        {FILENAME} ({FILESIZE})
+    </span>
+    <div class="Notice" style="margin-top: 10px">
+        <a href="{LOCAL_PATH}/info/{CRC32}/{URL_FILENAME}">Mehr Informationen anzeigen</a> |
+        <a href="{LOCAL_PATH}/{CRC32}/{URL_FILENAME}">Diese Datei herunterladen</a>
+    </div>
+<?php /*********************************************************************/
+    } elseif($MISC == "DeleteFile" || $MISC == "FileDeleted") { 
+?>
+<div class="Info" style="margin-top: 15px">
+    <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+<?php if($MISC == "DeleteFile") { ?>
+    Datei wirklich löschen?
+<?php } else { ?>
+    Datei erfolgreich gelöscht.
+<?php } ?>
+</div>
+<div style="margin-top: 40px">
+    <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+    <span style="vertical-align: middle">{FILENAME} ({FILESIZE})</span>
+</div>
+<div style="margin: 35px 50px">
+<?php if($MISC == "DeleteFile") { ?>
+    <form action="{CURRENT_REQUEST}" method="post">
+        <p>
+            Wenn Sie sicher sind, dass sie die oben genannte Datei löschen möchten,
+            klicken Sie unten um den Löschvorgang zu bestätigen
+        </p>
+        <input type="submit" class="Button" name="confirm" value="Löschvorgang bestätigen" />
+    </form>
+<?php } else { ?>
+    Die oben genannte Datei sowie alle damit assoziierten Daten wie Vorschaubilder 
+    oder hinterlegte E-Mail-Adressen wurden erfolgreich gelöscht.
+<?php } ?>
+</div>
+<?php /*********************************************************************/
+     } elseif($MISC == "StoreEMail") { 
+?>
+<div class="Info" style="margin-top: 15px">
+    <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+    E-Mail-Adresse hinterlegen
+</div>
+<div style="margin: 20px">
+    <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+    <span style="vertical-align: middle">{FILENAME} ({FILESIZE})</span>
+</div>
+<p style="margin: 10px 80px">
+    Sie können für obige Datei eine E-Mail-Adresse hinterlegen,
+    sie benötigen dazu jedoch den Löschcode der Datei.
+</p>
+<form action="{MYSELF}" method="post" style="margin-top: 10px">
+    <table style="margin: 10px auto; text-align: left; border: none" class="Notice">
+        <tr>
+            <td><label for="store_email">E-Mail-Adresse:</label></td>
+            <td><input name="store_email" id="store_email" type="text" class="TextField" size="18" /></td>
+        </tr><tr>
+            <td><label for="delcode">Löschcode:</label></td>
+            <td><input name="delcode" id="delcode" type="text" class="TextField" size="18" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="E-Mail-Adresse speichern" class="Button" />
+</form>
+<?php /*********************************************************************/
+    } elseif($MISC == "EMailStored") {
+?>
+<div class="Info" style="margin-top: 15px">
+    <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+    E-Mail-Adresse gespeichert.
+</div>
+<div style="margin: 60px 50px 10px">
+    <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+    <span style="vertical-align: middle">{FILENAME} ({FILESIZE})</span>
+</div>
+<div>
+    Die E-Mail-Adresse <b>{EMAIL}</b> wurde erfolgreich der obiger Datei hinterlegt.
+</div>
+<?php /*********************************************************************/
+    } elseif($MISC == "SendEMail" || $MISC == "EMailSent") { 
+?>
+<div class="Info" style="margin-top: 15px">
+    <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+<?php if($MISC == "SendEMail") { ?>
+    Lösch<?php if($HAS_PASSWORD) { ?>- und Passwort<?php } ?>link zusenden
+<?php } else { ?>
+    Lösch<?php if($HAS_PASSWORD) { ?>- und Passwort<?php } ?>link erfolgreich versandt.
+<?php } ?>
+</div>
+<div style="margin-top: 60px">
+    <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+    <span style="vertical-align: middle">{FILENAME} ({FILESIZE})</span>
+</div>
+<div style="margin: 15px 50px">
+<?php if($MISC == "SendEMail") { ?>
+    <form action="{CURRENT_REQUEST}" method="post">
+        <p>
+            Wenn Sie sicher sind, dass Sie sich den Lösch<?php if($HAS_PASSWORD) { ?>
+            - und Passwort<?php } ?>link zusenden lassen möchten, klicken Sie unten um
+            dies zu bestätigen.
+        </p>
+        <input type="submit" class="Button" name="confirm" value="Sendung bestätigen" />
+    </form>
+<?php } else { ?>
+    Der Lösch<?php if($HAS_PASSWORD) { ?>- und Passwort<?php } ?>link für die 
+    oben genannte Datei wurde erfolgreich an die hinterlegte E-Mail-Adresse versandt.
+<?php } ?>
+</div>
+<?php /*********************************************************************/
+    } elseif($MISC == "PasswordForm" || $MISC == "PasswordError") {
+?>
+<div class="PasswordBox">
+<?php if($MISC == "PasswordForm") { ?>
+    <div class="Info" style="margin-top: 20px">
+        <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+        Passwortgeschützte Datei
+    </div>
+<?php } else { ?>
+    <div class="ErrorTitle">
+        <img src="{LOCAL_PATH}/{IMAGES}/error.png" alt="Fehler" />
+        Falsches Passwort!
+    </div>
+<?php } ?>
+    <script type="text/javascript" src="{LOCAL_PATH}/javascript.js"></script>
+    <form action="{CURRENT_REQUEST}" method="post" style="margin: 60px 0 40px" onsubmit="encryptPassword()">
+        <p>Bitte Passwort eingeben:</p>
+            <img src="{LOCAL_PATH}/{IMAGES}/password.png" alt="Schloss" /> 
+            <input name="password" id="PasswordField" type="password" class="TextField" size="20" />
+            <input class="Button" value="Absenden" type="submit" />
+        <p><a href="{LOCAL_PATH}/?action=chpasswd" class="Notice">Passwort vergessen?</a></p>
+    </form>
+</div>
+<?php /*********************************************************************/
+    } elseif($MISC == "ChangePassword") { 
+?>
+<div class="Info" style="margin-top: 15px">
+    <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+    Das Passwort ändern
+</div>
+<p style="margin: 40px 80px 20px">
+<?php if(isset($DELCODE)) { ?>
+    Sie können hier das Passwort für die folgende Datei ändern.
+<?php } else { ?>
+    Sie können hier das Passwort einer Datei ändern, deren Löschcode Sie kennen.
+<?php } ?>
+</p>
+<?php if(isset($DELCODE)) { ?>
+<div style="margin: 10px">
+    <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+    <span style="vertical-align: middle">{FILENAME} ({FILESIZE})</span>
+</div>
+<?php } ?>
+<script type="text/javascript" src="{LOCAL_PATH}/javascript.js"></script>
+<form action="{LOCAL_PATH}/?action=chpasswd" method="post" style="margin-top: 10px" onsubmit="encryptPassword()">
+    <table style="margin: 10px auto; text-align: left; border: none" class="Notice">
+        <tr>
+<?php if(isset($DELCODE)) { ?>
+            <td colspan="2"><input name="code" type="hidden" value="{DELCODE}" /></td>
+<?php } else { ?>
+            <td><label for="delcode">Löschcode:</label></td>
+            <td><input name="code" id="delcode" type="text" class="TextField" size="20" /></td>
+<?php } ?>
+        </tr><tr>
+            <td><label for="PasswordField">Neues Passwort:</label></td>
+            <td>
+                <input name="password" id="PasswordField" type="password" class="TextField" size="17" />
+                <img src="{LOCAL_PATH}/{IMAGES}/password.png" alt="Schloss" style="cursor: pointer" 
+                    title="Passwort als Klartext anzeigen" onclick="togglePasswordField();" />
+            </td>
+        </tr>
+    </table>
+<input type="submit" value="Passwort ändern" class="Button" />
+</form>
+<?php /*********************************************************************/
+    } elseif($MISC == "PasswordChanged") {
+?>
+<div class="Info" style="margin-top: 15px">
+    <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+    Passwort erfolgreich geändert
+</div>
+<div style="margin: 60px 50px 10px">
+    <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+    <span style="vertical-align: middle">{FILENAME} ({FILESIZE})</span>
+</div>
+<div>
+    Das Passwort für die obige Datei wurde erfolgreich 
+    <?php if($HAS_PASSWORD) { ?>geändert<?php } else { ?>gelöscht<?php } ?>.
+</div>
+<?php /*********************************************************************/
+    } elseif($MISC == "AdminLogin") {
+?>
+<div class="Info" style="margin-top: 20px">
+    <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+    Login für den Administrationsbereich
+</div>
+<script type="text/javascript" src="{LOCAL_PATH}/javascript.js"></script>
+<form action="{CURRENT_REQUEST}" method="post" style="margin: 60px 0 40px" onsubmit="encryptPassword()">
+    <p>Bitte Administrations-Passwort eingeben:</p>
+        <img src="{LOCAL_PATH}/{IMAGES}/password.png" alt="Schloss" /> 
+        <input name="password" id="PasswordField" type="password" class="TextField" size="20" />
+        <input class="Button" value="Absenden" type="submit" />
+</form>
+<?php /*********************************************************************/
+    } elseif($MISC == "AdminFilesRemoved") {
+?>
+<div class="Info" style="margin: 20px">
+    <img src="{LOCAL_PATH}/{IMAGES}/information.png" alt="Information" />
+    Folgende Dateien wurden erfolgreich gelöscht
+</div>
+<ul class="RemovedFilesList">
+<?php foreach($REMOVED_FILES as $removedFile) { ?>
+    <li>
+        <img src="<?php echo($removedFile['icon']); ?>" 
+            title="<?php echo($removedFile['mimetype']); ?>" alt="<?php echo($removedFile['mimetype']); ?>" />
+        <?php echo($removedFile['filename'].' ('.$removedFile['size'].')');?>
+    </li>
+<?php } ?>
+</ul>
+<?php } ?>

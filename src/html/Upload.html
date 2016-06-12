@@ -1,0 +1,95 @@
+<script type="text/javascript">
+    var email = "{EMAIL}";
+    var uploadid = "{UPLOAD_ID}";
+    var myself = "{MYSELF}";
+    var maxsize = {JS_MAXSIZE};
+</script>
+<script type="text/javascript" src="{LOCAL_PATH}/javascript.js"></script>
+<form enctype="multipart/form-data" action="{MYSELF}"  method="post" 
+    onsubmit="return showUploadProgress()" class="UploadForm" id="UploadForm">
+
+    <p>Ihre gespeicherte E-Mail-Adresse:
+        <input type="text" name="email" id="EMailField" class="TextField" size="14" value="{EMAIL}" />
+    </p>
+
+    <img src="{LOCAL_PATH}/{IMAGES}/upload.png" alt="Datei auswählen" title="Datei auswählen" />
+    <input name="UPLOAD_IDENTIFIER" value="{UPLOAD_ID}" type="hidden" />
+    <input class="TextField" id="UploadField" size="32" name="upload" type="file" />
+
+    <div class="Notice">
+        Maximale Dateigrösse: <span class="Tooltip" title="1 Megabyte = 1'000'000 Bytes">{HTML_MAXSIZE}</span>
+        <span id="MoreSettings" style="display: none"> | <a href="#" onclick="toggleSettings(); return false"
+            style="text-decoration: none">&rsaquo;Mehr Optionen anzeigen</a></span>
+    </div>
+
+    <div id="Settings">
+    <table class="SettingsTable">
+        <colgroup>
+            <col width="90" />
+            <col width="180" />
+        </colgroup>
+        <tr>
+            <td>Passwort: </td>
+            <td>
+                <input name="password" type="password" id="PasswordField" class="TextField" size="20" />
+                <img src="{LOCAL_PATH}/{IMAGES}/password.png" alt="Schloss" title="Passwort als Klartext anzeigen" 
+                    style="cursor: pointer;" onclick="togglePasswordField();" id="PasswordIcon"/><br />
+            </td>
+        </tr><tr>
+            <td>Kommentar: </td><td><input name="comment" type="text" class="TextField" size="23" style="width: 180px" /></td>
+        </tr><tr>
+            <td>Haltbarkeit: </td>
+            <td><select name="expires" size="1" class="TextField" style="width: 180px">
+              <option value="max" selected="selected">Maximum</option>
+              <option value="1w">1 Woche</option>
+              <option value="3d">3 Tage</option>
+              <option value="1d">1 Tag</option>
+              <option value="6h">6 Stunden</option>
+              <option value="1h">1 Stunde</option>
+              <option value="30m">30 Minuten</option>
+            </select></td>
+        </tr><tr>
+            <td>Sichtbarkeit: </td>
+            <td>
+                <input type="checkbox" name="hidden" value="true" id="HideFileCheckbox" />
+                <label class="Notice" for="HideFileCheckbox" style="vertical-align:middle">Datei in Dateiliste verstecken</label>
+            </td>
+        </tr>
+    </table>
+    </div>
+
+    <div id="UploadInfo">
+        <img src="{LOCAL_PATH}/{IMAGES}/progressbar_border.gif" id="ProgressBar" alt="Bitte warten..." title="Bitte warten..." />
+        <div class="Notice">
+               <span id="UploadInfoText">Bitte warten...</span>
+        </div>
+    </div>
+
+    <input id="UploadButton" class="Button" value="Datei hochladen" type="submit" />
+
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+    toggleEMailField();
+
+    $("Settings")['maxHeight'] = Math.ceil(parseInt($("Settings").offsetHeight)/5)*5;
+    $("Settings").style.display = 'none';
+    $("Settings").style.overflow = 'hidden';
+
+    $("UploadForm")['maxPadding'] = 75;
+    $("UploadForm")['minPadding'] = 35;
+    $("UploadForm").style.paddingTop = ($("UploadForm")['maxPadding']).toString()+'px';
+
+    $("MoreSettings").style.display = 'inline';
+
+
+    var ImagePreloader = new Image();
+    var Images = new Array('{LOCAL_PATH}/{IMAGES}/progressbar_border.gif',
+                           '{LOCAL_PATH}/{IMAGES}/progressbar.gif');
+
+    for(var i=0; i<Images.length; i++){
+        ImagePreloader.src = Images[i];
+    }
+//]]>
+</script>

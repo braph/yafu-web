@@ -1,0 +1,54 @@
+<table class="FileInfoTable" style="margin-top: 5px">
+<tr>
+<?php if(file_exists(THUMBNAILS.$MD5)) { ?>
+    <td id="Thumbnail"><img src="{LOCAL_PATH}/thumbnail/{CRC32}/{URL_FILENAME}" alt="Vorschaubild" /></td>
+<?php } ?>
+    <td id="FileInfo">
+        <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+        <span id="FileName">{FILENAME} ({FILESIZE})</span>
+<?php if($HAS_PASSWORD) { ?>
+        <img src="{LOCAL_PATH}/{IMAGES}/password.png" alt="Passwort" title="Passwortgeschützte Datei"/>
+<?php } ?>
+<?php if(!empty($COMMENT)) { ?>
+        <div style="margin: 4px">{COMMENT}</div>
+<?php } ?>
+        <div class="Notice">Bisher {CLICKS} mal heruntergeladen</div>
+    </td>
+</tr>
+</table>
+<table class="FileInfoTable">
+<tr>
+    <td><b>Läuft aus:</b></td>
+    <td>{EXPIRY_DATE} ({EXPIRES})</td>
+</tr><tr>
+    <td><b>CRC32-Summe:</b></td>
+    <td>{CRC32}</td>
+</tr>
+<tr>
+    <td><b>MD5-Summe:</b></td>
+    <td>{MD5}</td>
+</tr>
+<tr>
+    <td colspan="2" id="FileLinks"><div style="line-height: 30px">
+<?php if($IS_TEXT) { ?>
+        <a href="{LOCAL_PATH}/show/{CRC32}/{URL_FILENAME}">
+            <img src="{LOCAL_PATH}/{IMAGES}/highlight.png" alt="Anzeigen" title="Diese Datei anzeigen" />
+            <span>Als Text anzeigen</span>
+        </a>
+<?php } ?>
+        <a href="{LOCAL_PATH}/{CRC32}/{URL_FILENAME}">
+            <img src="{LOCAL_PATH}/{IMAGES}/download.png" alt="Herunterladen" title="Diese Datei heruterladen" />
+            <span>Datei herunterladen</span>
+        </a>
+<?php if($HAS_EMAIL) { ?>
+<?php if($HAS_PASSWORD) { ?>
+        <br /> 
+<?php } ?>
+        <a href="{LOCAL_PATH}/mail/{CRC32}/{URL_FILENAME}">
+            <img src="{LOCAL_PATH}/{IMAGES}/mail.png" alt="E-Mail" title="Wichtige Links zusenden" />
+            <span>Löschlink <?php if($HAS_PASSWORD) { ?> oder Passwort<?php } ?> vergessen?</span>
+        </a>
+<?php } ?>
+    </div></td>
+</tr>
+</table>

@@ -1,0 +1,34 @@
+<?php echo('<?xml version="1.0" ?>'); ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{TITLE}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" type="text/css" href="{STYLESHEET}" />
+<?php if(preg_match('/Mozilla\/4.0 \(compatible; MSIE (5\.5|6\.0).*\)/', $_SERVER['HTTP_USER_AGENT'])) { ?>
+<style type="text/css">
+    img, div, a { behavior: url({LOCAL_PATH}/?action=fixpng); }
+    img#PasswordIcon { behavior: none; }
+</style>
+<?php } ?>
+</head>
+<body>
+<div id="Wrapper">
+<img src="{NAVIGATION_IMG}" width="600" height="120" alt="Navigation" id="Navigation" usemap="#Navigation" />
+<map name="Navigation" id="NavigationMap">
+    <area shape="rect" coords="200,8,279,110" href="{LOCAL_PATH}/" alt="Hochladen" title="Dateien hochladen"/>
+    <area shape="rect" coords="280,8,359,110" href="{LOCAL_PATH}/?action=paste" alt="Einfügen" title="Text aus der Zwischenablage hochladen" />
+    <area shape="rect" coords="360,8,439,110" href="{LOCAL_PATH}/?action=search" alt="Suchen" title="Nach hochgeladenen Dateien suchen" />
+    <area shape="rect" coords="440,8,519,110" href="{LOCAL_PATH}/?action=listfiles" alt="Dateiliste" title="Liste aller hochgeladenen Dateien" />
+    <area shape="rect" coords="520,8,599,110" href="{LOCAL_PATH}/?action=info" alt="Info" title="Informationen über diesen Service" />
+</map>
+<div id="Content">
+{CONTENT}
+</div>
+<div id="Footer">{FOOTER}</div>
+</div>
+</body>
+</html>

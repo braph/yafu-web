@@ -1,0 +1,15 @@
+Sie haben den Lösch<?php if($HAS_PASSWORD) { ?>- und Passwort<?php } ?>link für die von Ihnen hochgeladene Datei
+
+    »{FILENAME}«
+
+angefordert. Sollte dies nicht der Fall sein, können Sie diese Nachricht 
+gefahrlos ignorieren.
+Der Link, um Ihre Datei zu löschen, lautet:
+
+    {HTTP_PATH}/delete/{DELCODE}
+
+<?php if($HAS_PASSWORD) { ?>
+Der Link, um ihr Passwort für diese Datei zu ändern, lautet:
+
+    {HTTP_PATH}/?action=chpasswd&code={DELCODE}
+<?php } ?>

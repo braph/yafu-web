@@ -1,0 +1,16 @@
+<form accept-charset="UTF-8" action="{MYSELF}" method="get" class="SearchForm">
+<img src="{LOCAL_PATH}/{IMAGES}/search.png" alt="Suchen" />
+<input name="search" type="text" class="TextField" id="SearchField" size="36" />
+<select name="search_for" size="1" class="TextField">
+    <option value="all" selected="selected">Alles</option>
+    <option value="filename">Dateiname</option>
+    <option value="comment">Kommentar</option>
+    <option value="md5">MD5-Summe</option>
+    <option value="mimetype">Dateityp</option>
+</select>
+<br />
+<input class="Button" value="Suchen" type="submit" />
+<script type="text/javascript">
+    document.getElementById("SearchField").focus();
+</script>
+</form>

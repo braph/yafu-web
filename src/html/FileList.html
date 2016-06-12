@@ -1,0 +1,59 @@
+<?php if($ADMIN_MODE) { ?>
+<script type="text/javascript" src="{LOCAL_PATH}/javascript.js"></script>
+<form action="{CURRENT_REQUEST}" method="post" name="AdminDeleteForm"
+    onsubmit="return confirm('Sind Sie sicher, dass Sie alle markierten Dateien unwiederruflich löschen wollen?');">
+<?php } ?>
+<div class="FileList">
+<table class="FileListTable">
+<thead>
+    <tr>
+        <th><a href="{LOCAL_PATH}/?action=listfiles&amp;sortby=mimetype{SEARCHPARAMS}">Typ</a></th>
+        <th colspan="2">
+            <a href="{LOCAL_PATH}/?action=listfiles&amp;sortby=filename{SEARCHPARAMS}" style="float: left">Dateiname</a>
+            <a href="{LOCAL_PATH}/?action=listfiles&amp;sortby=password{SEARCHPARAMS}" style="float: right">Passwort</a>
+        </th>
+        <th><a href="{LOCAL_PATH}/?action=listfiles&amp;sortby=size{SEARCHPARAMS}">Grösse</a></th>
+        <th><a href="{LOCAL_PATH}/?action=listfiles&amp;sortby=expires{SEARCHPARAMS}">Läuft aus</a></th>
+        <?php if($ADMIN_MODE) { ?><th><img src="{LOCAL_PATH}/{IMAGES}/delete.png" alt="Löschen" title="Löschen?"/></th><?php } ?>
+    </tr>
+</thead>
+<tbody>
+<?php if(!empty($FILEARRAY))
+    $counter = 0;
+    foreach($FILEARRAY as $file) { ?>
+    <tr class="<?php echo(((($counter++)%2)==0) ? 'OddEntry' : 'EvenEntry' ); ?>">
+        <td><img src="<?php echo($file['icon']); ?>" 
+            title="<?php echo($file['mimetype']); ?>" alt="<?php echo($file['mimetype']); ?>" /></td>
+        <td class="FileNameRow"><div>
+            <a href="{LOCAL_PATH}/info/<?php echo($file['crc32'].'/'.$file['url_filename']); ?>"><?php echo($file['filename']); ?></a>
+            <?php if(!empty($file['comment'])) { ?>
+                <small style="display: block"><?php echo($file['comment']); ?></small>
+            <?php } ?></div>
+        </td>
+        <td><?php if($file['password']) { ?><img src="{LOCAL_PATH}/{IMAGES}/password.png" 
+                alt="Passwort" title="Passwortgeschützte Datei"/><?php } ?>
+        </td>
+        <td><?php echo($file['size']); ?></td>
+        <td><small style="display: block">Läuft aus</small><?php echo($file['expires']); ?></td>
+        <?php if($ADMIN_MODE) { ?><td>
+            <input type="checkbox" name="remove[]" onchange="sumFilesToDelete(this);" value="<?php echo($file['crc32']); ?>" />
+            <input type="hidden" name="FilesizeOf<?php echo($file['crc32']); ?>" value="<?php echo($file['real_size']); ?>"/>
+        </td><?php } ?>
+    </tr>
+<?php } ?>
+</tbody>
+</table>
+</div>
+<?php if($ADMIN_MODE) { ?>
+<span id="SelectedFiles" style="margin-right: 5px">
+<script type="text/javascript">
+    document.write("Keine Dateien markiert");
+    document.AdminDeleteForm.reset();
+</script>
+</span>
+<input name="sha1_password"  type="hidden" value="{SHA1_ADMIN_PASSWORD}" />
+<input class="Button" value="Dateien löschen" type="submit" />
+</form>
+<?php } else { ?>
+Insgesamt {FILES} hochgeladene Dateien ({TOTALSIZE})
+<?php } ?>

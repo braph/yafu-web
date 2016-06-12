@@ -1,0 +1,83 @@
+<form action="#">
+<div class="Info" style="margin-top: 15px">
+    Datei erfolgreich hochgeladen.
+</div>
+<div style="margin: 10px 0">
+    <img src="{ICON_MIMETYPE}" alt="{MIMETYPE}" title="Dateityp: {MIMETYPE}" />
+    <span style="vertical-align: middle">{FILENAME} ({FILESIZE})</span>
+<?php if($HAS_PASSWORD) { ?>
+    <img src="{LOCAL_PATH}/{IMAGES}/password.png" alt="Passwort" title="Passwortgeschützte Datei"/>
+<?php } ?>
+</div>
+<div class="Notice">
+    <a href="{LOCAL_PATH}/info/{CRC32}/{URL_FILENAME}">Mehr Informationen</a>
+    | <a href="{LOCAL_PATH}/{CRC32}/{URL_FILENAME}">Diese Datei herunterladen</a>
+<?php if($IS_TEXT) { ?>
+    | <a href="{LOCAL_PATH}/show/{CRC32}/{URL_FILENAME}">Als Text anzeigen</a>
+<?php } ?>
+</div>
+<table class="UploadedInfoTable">
+    <tr>
+        <td><span class="Notice">Direktlink: </span></td>
+        <td>
+            <input name="url" type="text" class="TextField" size="64" onfocus="this.select()" 
+                value="{HTTP_PATH}/{CRC32}/{URL_FILENAME}" readonly="readonly" />
+        </td>
+    </tr>
+<?php if($IS_IMAGE) { ?>
+    <tr>
+        <td><span class="Notice">BB-Bildcode:  </span></td>
+        <td>
+            <input name="bb-url" type="text" class="TextField" size="64" onfocus="this.select()" 
+                value="[IMG]{HTTP_PATH}/{CRC32}/{URL_FILENAME}[/IMG]" readonly="readonly" />
+        </td>
+    </tr>
+<?php } ?>
+<?php if($HAS_THUMBNAIL) { ?>
+    <tr>
+        <td><span class="Notice">BB-Vorschaubild: </span></td>
+        <td>
+            <input name="bb-url" type="text" class="TextField" size="64" onfocus="this.select()" 
+                value="[URL=&quot;{HTTP_PATH}/{CRC32}/{URL_FILENAME}&quot;][IMG]{HTTP_PATH}/thumbnail/{CRC32}/{URL_FILENAME}[/IMG][/URL]" readonly="readonly" />
+        </td>
+    </tr>
+<?php } ?>
+<?php if($IS_TEXT) { ?>
+    <tr>
+        <td><span class="Notice">Textanzeige: </span></td>
+        <td>
+            <input name="show-url" type="text" class="TextField" size="64" onfocus="this.select()" 
+                value="{HTTP_PATH}/show/{CRC32}/{URL_FILENAME}" readonly="readonly" />
+        </td>
+    </tr>
+<?php } ?>
+    <tr>
+        <td><span class="Notice">BB-Dateilink: </span></td>
+        <td>
+            <input name="bb-url" type="text" class="TextField" size="64" onfocus="this.select()" 
+                value="[URL=&quot;{HTTP_PATH}/{CRC32}/{URL_FILENAME}&quot;]{FILENAME} ({FILESIZE})[/URL]" readonly="readonly" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><div class="Spacer"><hr /></div></td>
+    </tr>
+    <tr>
+        <td><span class="Notice">L&ouml;schlink: </span></td>
+        <td>
+            <input name="del_link" type="text" class="TextField" size="64" onfocus="this.select()" 
+                value="{HTTP_PATH}/delete/{DELCODE}" readonly="readonly" />
+        </td>
+    </tr>
+</table>
+</form>
+<form action="{MYSELF}" method="post" style="margin-top: 10px">
+<?php if(!$HAS_THUMBNAIL) { ?>
+    <p class="Notice" style="text-align: justify; margin: 0 80px 10px"><b>Tipp:</b>
+    {EMAIL_TIP}
+    </p>
+<?php } ?>
+    <span class="Notice">E-Mail-Adresse: </span>
+    <input name="store_email" type="text" class="TextField" size="24" value="{EMAIL}" />
+    <input name="delcode" type="hidden" value="{DELCODE}" />
+    <input type="submit" value="Absenden" class="Button" />
+</form>

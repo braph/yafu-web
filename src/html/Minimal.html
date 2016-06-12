@@ -1,0 +1,48 @@
+<?php echo('<?xml version="1.0" ?>'); ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{TITLE}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" type="text/css" href="{STYLESHEET}" />
+<?php if(preg_match('/Mozilla\/4.0 \(compatible; MSIE (5\.5|6\.0).*\)/', $_SERVER['HTTP_USER_AGENT'])) { ?>
+<style type="text/css">
+    img, div, a { behavior: url({LOCAL_PATH}/?action=fixpng) };
+</style>
+<?php } ?>
+<script type="text/javascript">
+function checkWindowSize() {
+    if(document.body.clientWidth < 800 && screen.availWidth >= 800) {
+        window.resizeTo(800, 600);
+    }
+}
+</script>
+</head>
+<body onload="checkWindowSize()">
+<div id="Banner">
+    <a href="{LOCAL_PATH}/"><img id="Logo" src="{LOCAL_PATH}/{IMAGES}/minimal-logo.png" alt="Yet Another File Upload" /></a>
+    <div class="BannerInfo">{FILENAME} ({FILESIZE})
+<?php if(!empty($LANGUAGES)) { ?>
+        <form action="{LOCAL_PATH}/show/{CRC32}/{URL_FILENAME}" method="post" id="LanguageForm">
+<?php if($HAS_PASSWORD) { ?>
+            <img src="{LOCAL_PATH}/{IMAGES}/password.png" alt="Passwort" title="Passwortgeschützte Datei"/>
+<?php } ?>
+            <a href="{LOCAL_PATH}/{CRC32}/{URL_FILENAME}"><img src="{LOCAL_PATH}/{IMAGES}/download.png" alt="Herunterladen" /></a>
+            <input type="image" src="{LOCAL_PATH}/{IMAGES}/highlight.png" alt="Absenden" />
+            <select name="language" size="1" onchange="document.getElementById('LanguageForm').submit()">
+<?php foreach($LANGUAGES as $language) { ?>
+                <option value="<?php echo($language['value']) ?>" <?php if($CURRENT_LANGUAGE == $language['value']) { ?>selected="selected"<?php } ?>>
+                    <?php echo($language['name']."\n"); ?>
+                </option>
+<?php } ?>
+           </select>
+        </form>
+<?php } ?>
+    </div>
+</div>
+{CONTENT}
+</body>
+</html>

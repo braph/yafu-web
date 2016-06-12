@@ -1,0 +1,286 @@
+body {
+    color: #999;
+    font-family: sans-serif;
+    font-size: 10pt;
+    background: #252525;
+    margin: 0;
+    text-align: center;
+}
+
+a {
+    color: #999999;
+}
+
+img {
+    vertical-align: middle;
+    border: none;
+}
+
+#Wrapper {
+    width: 600px;
+    height: 440px;
+    margin: 16px auto 0;
+    position: relative;
+    background-color: #212121;
+    border: 1px solid #282828;    
+}
+
+#Header {
+    width: 600px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#Navigation {
+    border: none;
+}
+
+.TextField {
+    color: #999;
+    background-color: #313131;
+    border: 1px solid #222;;
+}
+
+.Button {
+    background-color: #999;
+    border: 1px solid #222;
+    font-weight: bold;
+}
+
+.Tooltip {
+    cursor: help;
+    border-bottom: 1px dotted;
+}
+
+.ErrorTitle {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #BF0000;
+    margin-top: 20px;
+}
+
+.ErrorMessage {
+    margin: 40px 30px 0;
+}
+
+.FileListTable a {
+    text-decoration: none;
+}
+
+.FileListTable a:hover, .Error a:hover, .FileInfoTable #FileLinks a span:hover {
+    text-decoration: underline;
+}
+
+.Info {
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.Notice {
+    font-size: 7pt;
+}
+
+#Footer {
+    font-size: 7pt;
+    position: absolute;
+    bottom: 8px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.UploadForm {
+    padding-top: 45px;
+}
+
+.UploadForm .Notice {
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+.UploadForm .SettingsTable #PasswordField {
+    width: 160px;
+}
+
+#ProgressBar {
+    background: url(/yafu/images/progressbar.gif) top left no-repeat;
+    padding: 0;
+    background-position: 0 0;
+}
+
+#UploadButton {
+    margin-top: 15px;
+}
+
+#UploadInfo {
+    margin-top: 20px;
+    display: none;
+}
+
+.SettingsTable {
+    text-align: left;
+    width: 270px;
+    margin: 0 auto;
+}
+
+.UploadedInfoTable {
+    margin: 10px auto 0;
+    border: none;
+    text-align: left;
+}
+
+.Spacer {
+    height: 5px;
+}
+
+.Spacer hr {
+    display: none;
+}
+
+.PasteForm {
+    padding-top: 15px;
+    margin: 0;
+}
+
+.PasteForm #MoreSettings {
+    width: 540px;
+    margin: 0 25px;
+    text-align: left;
+    display: none
+}
+
+.PasteTable {
+    border: none;
+    text-align: left;
+    margin: 0 20px;
+}
+
+#PasteField {
+    width: 100%;
+    height: 160px;
+}
+
+#PasteButton {
+    margin-top: 10px;
+}
+
+.SearchForm {
+    margin-top: 110px;
+}
+
+.FileList {
+    overflow: auto;
+    height: 250px;
+    margin: 8px;
+    border: 1px solid #333;
+}
+
+.FileListTable {
+    font-size: 8pt;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.FileListTable thead {
+    background-color: #333;
+    position: static;
+}
+
+.FileListTable thead a {
+    text-decoration: none;
+}
+
+.FileListTable tbody tr {
+    height: 35px;
+}
+
+.FileListTable .FileNameRow {
+    text-align: left;
+    font-size: 10pt;
+    width: 350px;
+}
+
+.FileListTable .FileNameRow div {
+    white-space:nowrap;
+    overflow: hidden;
+    width: 350px;
+}
+
+.FileListTable .OddEntry {
+    background-color: #252525;
+}
+
+.RemovedFilesList {
+    list-style-type: none;
+    text-align: left; 
+    max-height: 180px;
+    overflow: auto;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #333;
+}
+
+.FileInfoTable {
+    margin: 0 15px;
+    width: 570px;
+    text-align: left;
+}
+
+.FileInfoTable td {
+    height: 24px;
+}
+
+.FileInfoTable #Thumbnail {
+    width: 160px;
+    height: 140px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.FileInfoTable #FileInfo {
+    height: 140px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.FileInfoTable #FileInfo #FileName {
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.FileInfoTable #FileLinks {
+    padding-top: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.FileInfoTable #FileLinks a {
+    font-size: 11pt;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.InfoBox {
+    overflow: auto;
+    height: 260px;
+    margin: 8px;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #333;
+}
+
+.InfoBox p {
+    font-size: 8pt;
+    margin-left: 10px;
+}
+
+.InfoBox .Title {
+    display: block;
+}
+
+.InfoBox #EMail {
+    font-family: monospace;
+}
